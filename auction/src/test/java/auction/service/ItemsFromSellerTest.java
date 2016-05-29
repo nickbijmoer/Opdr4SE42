@@ -1,5 +1,6 @@
 package auction.service;
 
+import auction.dao.CategoryDAOJPAImpl;
 import org.junit.Ignore;
 import javax.persistence.*;
 import util.DatabaseCleaner;
@@ -13,8 +14,7 @@ import static org.junit.Assert.*;
 
 public class ItemsFromSellerTest {
 
-    final EntityManagerFactory emf = Persistence.createEntityManagerFactory("nl.fhict.se42_auction_jar_1.0-SNAPSHOTPU");
-    final EntityManager em = emf.createEntityManager();
+   
     private AuctionMgr auctionMgr;
     private RegistrationMgr registrationMgr;
     private SellerMgr sellerMgr;
@@ -27,7 +27,8 @@ public class ItemsFromSellerTest {
         registrationMgr = new RegistrationMgr();
         auctionMgr = new AuctionMgr();
         sellerMgr = new SellerMgr();
-        new DatabaseCleaner(em).clean();
+        DatabaseCleaner dc = new DatabaseCleaner(Persistence.createEntityManagerFactory("nl.fhict.se42_auction_jar_1.0-SNAPSHOTPU").createEntityManager());
+        dc.clean();
     }
 
     @Test
@@ -40,13 +41,17 @@ public class ItemsFromSellerTest {
 
         User user1 = registrationMgr.registerUser(email);
         assertEquals(0, user1.numberOfOfferedItems());
-
+        
+        
         Category cat = new Category("cat2");
+        
+        CategoryDAOJPAImpl categories = new CategoryDAOJPAImpl();
+        categories.create(cat);
         Item item1 = sellerMgr.offerItem(user1, cat, omsch1);
 
        
         // test number of items belonging to user1
-        assertEquals(0, user1.numberOfOfferedItems());
+        //assertEquals(0, user1.numberOfOfferedItems());
         assertEquals(1, user1.numberOfOfferedItems());
         
         /*
@@ -69,7 +74,7 @@ public class ItemsFromSellerTest {
 
         User userWithItem = item2.getSeller();
         assertEquals(2, userWithItem.numberOfOfferedItems());
-        assertEquals(3, userWithItem.numberOfOfferedItems());
+        //assertEquals(3, userWithItem.numberOfOfferedItems());
         /*
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
@@ -77,7 +82,7 @@ public class ItemsFromSellerTest {
          */
         
         
-        assertNotSame(user3, userWithItem);
+        //assertNotSame(user3, userWithItem);
         assertEquals(user3, userWithItem);
 
     }
@@ -90,6 +95,8 @@ public class ItemsFromSellerTest {
         String omsch2 = "omsch_ifu2";
 
         Category cat = new Category("cat2");
+        CategoryDAOJPAImpl categories = new CategoryDAOJPAImpl();
+        categories.create(cat);
 
         User user10 = registrationMgr.registerUser(email);
         Item item10 = sellerMgr.offerItem(user10, cat, omsch1);

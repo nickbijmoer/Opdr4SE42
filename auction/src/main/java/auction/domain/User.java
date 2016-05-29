@@ -35,7 +35,14 @@ public class User implements Serializable {
     }
     
     public void addItem(Item item){
+        try {
+        
         offeredItems.add(item);
+        item.setSeller(this);
+       
+        } catch (Exception e) {
+        }
+
     }
     
     public int numberOfOfferedItems(){

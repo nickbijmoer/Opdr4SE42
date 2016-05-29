@@ -51,6 +51,7 @@ public class Item implements Comparable {
         this.category = category;
         this.description = description;
         
+        
     }
 
    
@@ -93,20 +94,25 @@ public class Item implements Comparable {
         return -1;
     }
 
-    public boolean equals(Object o) {
-        if(o == this)
-        {
-            return true;
+       public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        } else if (o.getClass() != this.getClass()) {
+            return false;
         }
-        return false;
+        return ((Item) o).getId() == this.id;
     }
 
     public int hashCode() {
-        return (int) (long) id *
-                category.hashCode() *
-                seller.hashCode() *
-                description.hashCode() *
-                highest.hashCode();
+        int hash = 1;
+        hash = hash * 13 + (this.getDescription() == null ? 0 : this.getDescription().hashCode());
+        hash = hash * 17 + (this.getSeller() == null ? 0 : this.getSeller().getEmail().hashCode());
+        hash = hash * 19 + (this.getCategory() == null ? 0 : this.getCategory().getDiscription().hashCode());
+        return hash;
+    }
+
+    void setSeller(User seller) {
+        this.seller = seller;
     }
     
 }
