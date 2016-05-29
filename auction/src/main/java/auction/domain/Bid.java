@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 @Entity
 public class Bid implements Serializable{
@@ -21,10 +23,15 @@ public class Bid implements Serializable{
     private FontysTime time;
 
     @ManyToOne(cascade = CascadeType.MERGE)
+    @CascadeOnDelete
     private User buyer;
 
-    @Column
+    @Embedded
     private Money amount;
+    
+    @JoinColumn(nullable=false)
+    @CascadeOnDelete
+    private Item item;
     
     public Bid() {
     }

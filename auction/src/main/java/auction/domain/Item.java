@@ -1,5 +1,6 @@
 package auction.domain;
 
+import java.util.List;
 import nl.fontys.util.Money;
 import javax.persistence.Id;
 import javax.persistence.Entity;
@@ -10,7 +11,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 
 @Entity
@@ -41,6 +44,10 @@ public class Item implements Comparable {
     
     @OneToOne
     private Bid highest;
+    
+    @OneToMany(mappedBy=" item", cascade = CascadeType.PERSIST)
+    @CascadeOnDelete
+    private List<Bid> bids;
 
     public Item() {
     }
