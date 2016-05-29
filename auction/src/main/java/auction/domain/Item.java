@@ -69,6 +69,10 @@ public class Item implements Comparable {
     public User getSeller() {
         return seller;
     }
+    
+    public List<Bid> getBids(){
+        return bids;
+    }
 
     
     public Category getCategory() {

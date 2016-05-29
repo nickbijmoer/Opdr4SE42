@@ -29,6 +29,7 @@ public class Bid implements Serializable{
     @Embedded
     private Money amount;
     
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(nullable=false)
     @CascadeOnDelete
     private Item item;
@@ -43,6 +44,10 @@ public class Bid implements Serializable{
 
     public FontysTime getTime() {
         return time;
+    }
+    
+    public Item getItem(){
+        return item;
     }
 
     public User getBuyer() {
