@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: auction.service.RegistrationMgrTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.863 sec <<< FAILURE!
-getUsers(auction.service.RegistrationMgrTest)  Time elapsed: 0.02 sec  <<< FAILURE!
-java.lang.AssertionError: expected:<0> but was:<3>
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec <<< FAILURE!
+getUsers(auction.service.RegistrationMgrTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<0> but was:<5>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)
 	at org.junit.Assert.assertEquals(Assert.java:118)

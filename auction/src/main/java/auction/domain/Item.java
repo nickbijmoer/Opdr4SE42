@@ -50,6 +50,7 @@ public class Item implements Comparable {
         this.seller = seller;
         this.category = category;
         this.description = description;
+        seller.addItem(this);
     }
 
    
@@ -93,12 +94,19 @@ public class Item implements Comparable {
     }
 
     public boolean equals(Object o) {
-        //TODO
+        if(o == this)
+        {
+            return true;
+        }
         return false;
     }
 
     public int hashCode() {
-        //TODO
-        return 0;
+        return (int) (long) id *
+                category.hashCode() *
+                seller.hashCode() *
+                description.hashCode() *
+                highest.hashCode();
     }
+    
 }
