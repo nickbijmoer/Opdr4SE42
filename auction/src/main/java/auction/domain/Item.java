@@ -50,7 +50,7 @@ public class Item implements Comparable {
         this.seller = seller;
         this.category = category;
         this.description = description;
-        seller.addItem(this);
+        
     }
 
    

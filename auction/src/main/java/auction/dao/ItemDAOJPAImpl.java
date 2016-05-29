@@ -100,7 +100,7 @@ public class ItemDAOJPAImpl implements ItemDAO {
     public void remove(Item item) {
          em.getTransaction().begin();
         try {
-            em.remove(em.merge(item));
+            em.remove(item);
             em.getTransaction().commit();
         } catch (Exception e) {
              em.getTransaction().rollback();
