@@ -45,7 +45,7 @@ public class Item implements Comparable {
     @OneToOne
     private Bid highest;
     
-    @OneToMany(mappedBy=" item", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy="item", cascade = CascadeType.PERSIST)
     @CascadeOnDelete
     private List<Bid> bids;
 
@@ -96,6 +96,9 @@ public class Item implements Comparable {
             return null;
         }
         highest = new Bid(buyer, amount);
+        System.out.println(bids + "HighedT");
+        this.bids.add(highest);
+        highest.setItem(this);
         return highest;
     }
 
@@ -125,5 +128,7 @@ public class Item implements Comparable {
     void setSeller(User seller) {
         this.seller = seller;
     }
+    
+    
     
 }

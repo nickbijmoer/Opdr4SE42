@@ -57,4 +57,9 @@ public class Bid implements Serializable{
     public Money getAmount() {
         return amount;
     }
+    
+    public void setItem(Item i)
+    {
+        this.item = i;
+    }
 }

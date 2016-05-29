@@ -1,10 +1,9 @@
 package auction.service;
 
 import auction.dao.CategoryDAOJPAImpl;
-<<<<<<< HEAD
-=======
+
 import auction.domain.Bid;
->>>>>>> origin/master
+
 import org.junit.Ignore;
 import javax.persistence.*;
 import util.DatabaseCleaner;
